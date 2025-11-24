@@ -55,13 +55,16 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            {{ $product->id }}</td>
+                                            {{ $product->id }}
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $product->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $product->category }}</td>
+                                            {{ $product->category }}
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">€
-                                            {{ number_format($product->price, 2, ',', '.') }}</td>
+                                            {{ number_format($product->price, 2, ',', '.') }}
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                                             @if ($product->is_available)
                                                 <span
@@ -71,12 +74,21 @@
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">No</span>
                                             @endif
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <td class="px-6 py-4 text-sm font-medium">
                                             {{-- Azioni: Modifica e Visualizza/Elimina --}}
+
                                             <a href="{{ route('products.edit', $product) }}"
-                                                class="text-indigo-600 hover:text-indigo-900 mr-3">Modifica</a>
+                                                class="text-indigo-600 hover:text-indigo-900">Modifica</a>
                                             <a href="{{ route('products.show', $product) }}"
                                                 class="text-gray-600 hover:text-gray-900">Dettagli</a>
+
+                                            <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="text-white bg-red-600 hover:bg-red-800 p-2 rounded">Elimina</button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                 @endforeach
