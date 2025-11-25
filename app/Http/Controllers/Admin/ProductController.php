@@ -71,6 +71,7 @@ class ProductController extends Controller
             'price' => 'nullable|numeric',
             'caliber' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'is_available' => 'required|boolean',
         ]);
 
         $product->update($validated);

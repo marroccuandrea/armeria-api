@@ -41,6 +41,17 @@
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full"
                                 name="description">{{ old('description', $product->description) }}</textarea>
                         </div>
+                        <div class="mt-4">
+                            <x-input-label for="is_available" :value="__('Disponibile')" />
+                            <select id="is_available" class="block mt-1 w-full" name="is_available">
+                                <option value="1" {{ old('is_available', $product->is_available) ? 'selected' : '' }}>
+                                    Sì
+                                </option>
+                                <option value="0" {{ old('is_available', $product->is_available) ? '' : 'selected' }}>
+                                    No
+                                </option>
+                            </select>
+                        </div>
 
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button>
